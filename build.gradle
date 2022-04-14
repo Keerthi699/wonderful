@@ -1,8 +1,11 @@
 plugins {
 	id 'org.springframework.boot' version '2.6.6'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'com.diffplug.gradle.spotless'version '4.0.1'
 	id 'java'
 }
+
+
 
 group = 'com.keerthijan'
 version = '0.0.1-SNAPSHOT'
@@ -19,4 +22,15 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+compileJava.dependsOn 'spotlessApply'
+
+spotless {
+	java{
+		def src= 'src/main/java'
+		googleJavaFormat('1.7').aosp()
+		paddedCell()
+		removeUnusedImports()  // removes unused imports
+	}
+
 }
