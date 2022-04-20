@@ -30,7 +30,7 @@ spotless {
 		def src= 'src/main/java'
 		googleJavaFormat('1.7').aosp()
 		paddedCell()
-		removeUnusedImports()  // removes unused imports
-	}
+		removeUnusedImports()
+     	}
 
-}
+         }
