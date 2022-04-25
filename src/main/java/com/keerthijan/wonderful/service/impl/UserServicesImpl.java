@@ -2,17 +2,20 @@ package com.keerthijan.wonderful.service.impl;
 
 import com.keerthijan.wonderful.dto.UserDetailsDTO;
 import com.keerthijan.wonderful.service.UserService;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServicesImpl implements UserService {
 
-    String INDIA = "India";
+    public static final String INDIA = "India";
 
     @Override
     public String getWelcomeMessage(UserDetailsDTO userDetailsDTO) {
         String welcome = "";
-        if (INDIA.equals(userDetailsDTO.getLocation())) {
+        List<String> Country = getCountryList();
+        if (Country.contains(userDetailsDTO.getLocation())) {
             welcome =
                     " Namaste "
                             + userDetailsDTO.getName()
@@ -23,8 +26,17 @@ public class UserServicesImpl implements UserService {
                     "Hello"
                             + userDetailsDTO.getName()
                             + ", glad you are in "
-                            + userDetailsDTO.getCompany();
+                            + userDetailsDTO.getCompany()
+                            + "We don't have your Location";
         }
         return welcome;
+    }
+
+    private List<String> getCountryList() {
+        List<String> countries = new ArrayList<String>();
+        countries.add("India");
+        countries.add("U.S");
+        countries.add("U.K");
+        return countries;
     }
 }
