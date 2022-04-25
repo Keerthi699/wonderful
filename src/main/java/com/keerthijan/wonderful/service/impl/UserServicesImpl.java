@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServicesImpl implements UserService {
 
-    String INDIA = "India";
+    public static final String INDIA = "India";
 
     @Override
     public String getWelcomeMessage(UserDetailsDTO userDetailsDTO) {
